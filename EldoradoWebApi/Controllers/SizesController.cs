@@ -1,5 +1,5 @@
-﻿using EldoradoApi.Models.Sizes;
-using EldoradoApi.Services;
+﻿using EldoradoWebApi.Models.Sizes;
+using EldoradoWebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
