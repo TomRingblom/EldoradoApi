@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldoradoWebApi", "EldoradoWebApi\EldoradoWebApi.csproj", "{FAA4096E-B57C-453D-AB80-B6F74BDEBD6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EldoradoWebApi.Tests", "EldoradoWebApi.Tests\EldoradoWebApi.Tests.csproj", "{B654E883-3A1C-40D2-9A20-CC47C4C140BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAA4096E-B57C-453D-AB80-B6F74BDEBD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA4096E-B57C-453D-AB80-B6F74BDEBD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA4096E-B57C-453D-AB80-B6F74BDEBD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA4096E-B57C-453D-AB80-B6F74BDEBD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B654E883-3A1C-40D2-9A20-CC47C4C140BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B654E883-3A1C-40D2-9A20-CC47C4C140BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B654E883-3A1C-40D2-9A20-CC47C4C140BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B654E883-3A1C-40D2-9A20-CC47C4C140BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F2FA612-B7DD-419E-8DF1-23C8F1C7ECA7}
+	EndGlobalSection
+EndGlobal
