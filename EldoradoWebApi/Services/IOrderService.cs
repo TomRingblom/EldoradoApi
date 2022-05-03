@@ -1,7 +1,7 @@
-﻿using EldoradoApi.Models.Entities;
-using EldoradoApi.Models.Orders;
+﻿using EldoradoWebApi.Models.Entities;
+using EldoradoWebApi.Models.Orders;
 
-namespace EldoradoApi.Services;
+namespace EldoradoWebApi.Services;
 
 public interface IOrderService
 {

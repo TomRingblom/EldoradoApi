@@ -1,48 +1,35 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EldoradoApi.Models.Entities
+namespace EldoradoWebApi.Models.Entities
 {
     public class ProductEntity
     {
-
         public ProductEntity()
         {
 
         }
 
-        public ProductEntity(int id)
-        {
-            Id = id;
-        }
-
-        public ProductEntity(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
-
-        public ProductEntity(string name, string description, decimal price)
+        public ProductEntity(string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId, int? couponId)
         {
             Name = name;
             Description = description;
             Price = price;
+            SubCategoryId = subCategoryId;
+            SizeId = sizeId;
+            BrandId = brandId;
+            ColorId = colorId;
+            StatusId = statusId;
+            CouponId = couponId;
         }
 
-        public ProductEntity(int id, string name, string description, decimal price)
+        public ProductEntity(int id, string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId, int? couponId)
         {
             Id = id;
             Name = name;
             Description = description;
             Price = price;
-        }
-
-        public ProductEntity(int id, string name, string description, decimal price, int sizeId, int brandId, int colorId, int statusId, int? couponId)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-            Price = price;
+            SubCategoryId = subCategoryId;
             SizeId = sizeId;
             BrandId = brandId;
             ColorId = colorId;
@@ -60,7 +47,11 @@ namespace EldoradoApi.Models.Entities
         public string Description { get; set; } = null!;
         [Required]
         [Column(TypeName = "money")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
+
+        [Required]
+        public int SubCategoryId { get; set; }
+        public SubCategoryEntity SubCategory { get; set; } = null!;
 
         [Required]
         public int SizeId { get; set; }

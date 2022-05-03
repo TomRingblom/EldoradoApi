@@ -1,4 +1,4 @@
-﻿namespace EldoradoApi.Models.Orders;
+﻿namespace EldoradoWebApi.Models.Orders;
 
 public class OrderCreate
 {

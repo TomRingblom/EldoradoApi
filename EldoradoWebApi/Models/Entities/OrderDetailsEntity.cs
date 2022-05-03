@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EldoradoApi.Models.Entities;
+namespace EldoradoWebApi.Models.Entities;
 
 public class OrderDetailsEntity
 {
@@ -9,15 +9,16 @@ public class OrderDetailsEntity
     {
     }
 
-    public OrderDetailsEntity(int orderId, int productId, decimal price, int quantity)
+    public OrderDetailsEntity(int orderId, int productId, string productName, double price, int quantity)
     {
         OrderId = orderId;
         ProductId = productId;
+        Product.Name = productName;
         Price = price;
         Quantity = quantity;
     }
 
-    public OrderDetailsEntity(int id, int orderId, OrderEntity order, int productId, ProductEntity product, int quantity, decimal price)
+    public OrderDetailsEntity(int id, int orderId, OrderEntity order, int productId, ProductEntity product, int quantity, double price)
     {
         Id = id;
         OrderId = orderId;
@@ -43,5 +44,5 @@ public class OrderDetailsEntity
     public int Quantity { get; set; }
     [Required]
     [Column(TypeName = "money")]
-    public decimal Price { get; set; }
+    public double Price { get; set; }
 }

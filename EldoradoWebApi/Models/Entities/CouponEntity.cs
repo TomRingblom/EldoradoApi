@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EldoradoApi.Models.Entities
+namespace EldoradoWebApi.Models.Entities
 {
     public class CouponEntity
     {

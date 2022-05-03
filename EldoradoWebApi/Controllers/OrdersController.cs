@@ -3,7 +3,7 @@ using EldoradoApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EldoradoApi.Controllers
+namespace EldoradoWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

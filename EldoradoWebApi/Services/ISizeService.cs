@@ -1,6 +1,6 @@
-﻿using EldoradoApi.Models.Sizes;
+﻿using EldoradoWebApi.Models.Sizes;
 
-namespace EldoradoApi.Services;
+namespace EldoradoWebApi.Services;
 
 public interface ISizeService
 {

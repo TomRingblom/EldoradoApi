@@ -1,4 +1,4 @@
-﻿namespace EldoradoApi.Models.Sizes;
+﻿namespace EldoradoWebApi.Models.Sizes;
 
 public class SizeObject
 {

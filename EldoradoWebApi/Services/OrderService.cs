@@ -1,9 +1,9 @@
-﻿using EldoradoApi.Data;
-using EldoradoApi.Models.Entities;
-using EldoradoApi.Models.Orders;
+﻿using EldoradoWebApi.Data;
+using EldoradoWebApi.Models.Entities;
+using EldoradoWebApi.Models.Orders;
 using Microsoft.EntityFrameworkCore;
 
-namespace EldoradoApi.Services;
+namespace EldoradoWebApi.Services;
 
 public class OrderService : IOrderService
 {

@@ -1,9 +1,9 @@
-﻿using EldoradoApi.Data;
-using EldoradoApi.Models.Entities;
-using EldoradoApi.Models.Sizes;
+﻿using EldoradoWebApi.Data;
+using EldoradoWebApi.Models.Entities;
+using EldoradoWebApi.Models.Sizes;
 using Microsoft.EntityFrameworkCore;
 
-namespace EldoradoApi.Services;
+namespace EldoradoWebApi.Services;
 
 public class SizeService : ISizeService
 {

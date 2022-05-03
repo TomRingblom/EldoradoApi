@@ -1,7 +1,7 @@
-﻿using EldoradoApi.Models.Entities;
+﻿using EldoradoWebApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EldoradoApi.Data
+namespace EldoradoWebApi.Data
 {
     public class SqlContext : DbContext
     {

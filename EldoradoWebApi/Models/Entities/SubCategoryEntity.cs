@@ -3,29 +3,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EldoradoWebApi.Models.Entities
 {
-    public class SizeEntity
+    public class SubCategoryEntity
     {
-        public SizeEntity()
+        public SubCategoryEntity()
         {
+
         }
 
-        public SizeEntity(string name)
-        {
-            Name = name;
-        }
-
-        public SizeEntity(int id, string name)
+        public SubCategoryEntity(int id, string name, int categoryId)
         {
             Id = id;
             Name = name;
+            CategoryId = categoryId;
         }
 
         [Key]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar(5)")]
+        [Column(TypeName = "nvarchar(50)")]
         public string Name { get; set; } = null!;
-
-        public virtual ICollection<ProductEntity> Products { get; set; } = null!;
+        [Required]
+        public int CategoryId { get; set; }
+        public CategoryEntity Category { get; set; } = null!;
     }
 }

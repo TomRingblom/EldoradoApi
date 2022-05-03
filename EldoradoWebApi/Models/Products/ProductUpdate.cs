@@ -1,7 +1,8 @@
 ﻿namespace EldoradoWebApi.Models.Products
 {
-    public class ProductCreate
+    public class ProductUpdate
     {
+        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public double Price { get; set; }
