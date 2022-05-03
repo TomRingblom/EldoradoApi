@@ -1,5 +1,5 @@
-﻿using EldoradoApi.Models.OrderDetails;
-using EldoradoApi.Services;
+﻿using EldoradoWebApi.Models.OrderDetails;
+using EldoradoWebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
