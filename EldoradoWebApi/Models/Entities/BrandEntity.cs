@@ -9,6 +9,11 @@ namespace EldoradoWebApi.Models.Entities
         {
         }
 
+        public BrandEntity(string name)
+        {
+            Name = name;
+        }
+
         public BrandEntity(int id, string name)
         {
             Id = id;
