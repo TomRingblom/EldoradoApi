@@ -8,7 +8,10 @@ namespace EldoradoWebApi.Models.Entities
         public ColorEntity()
         {
         }
-
+        public ColorEntity(string name)
+        {
+            Name = name;
+        }
         public ColorEntity(int id, string name)
         {
             Id = id;

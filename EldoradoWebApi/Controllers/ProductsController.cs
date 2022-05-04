@@ -1,6 +1,6 @@
-﻿using EldoradoWebApi.Data;
-using EldoradoWebApi.Models.Products;
-using EldoradoWebApi.Services;
+﻿using EldoradoApi.Data;
+using EldoradoApi.Models.Products;
+using EldoradoApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +23,7 @@ namespace EldoradoWebApi.Controllers
             if (ModelState.IsValid)
             {
                 await _service.CreateProduct(model);
-                return Created("Product created succesfully", null);
+                return Created("Product created successfully", null);
             }
             return BadRequest();
         }

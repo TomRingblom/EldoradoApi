@@ -9,6 +9,11 @@ namespace EldoradoWebApi.Models.Entities
         {
         }
 
+        public StatusEntity(string name)
+        {
+            Name = name;
+        }
+
         public StatusEntity(int id, string name)
         {
             Id = id;
