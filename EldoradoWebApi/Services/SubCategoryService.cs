@@ -22,11 +22,11 @@ namespace EldoradoWebApi.Services
 
         public async Task<SubCategoryObject> DeleteSubCategory(int id)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(o => o.Id == id);
+            var category = await _context.SubCategories.FirstOrDefaultAsync(o => o.Id == id);
             if (category == null)
                 return null!;
 
-            _context.Categories.Remove(category);
+            _context.SubCategories.Remove(category);
             await _context.SaveChangesAsync();
             return new SubCategoryObject(category.Name);
         }
@@ -34,7 +34,7 @@ namespace EldoradoWebApi.Services
         public async Task<IEnumerable<SubCategoryObject>> GetSubCategories()
         {
             var subCategoryList = new List<SubCategoryObject>();
-            foreach (var category in await _context.Categories.ToListAsync())
+            foreach (var category in await _context.SubCategories.ToListAsync())
             {
                subCategoryList.Add(new SubCategoryObject(category.Name));
             }
