@@ -10,6 +10,12 @@ namespace EldoradoWebApi.Models.Entities
 
         }
 
+        public SubCategoryEntity(string name, int categoryId)
+        {
+            Name = name;
+            CategoryId = categoryId;
+        }
+
         public SubCategoryEntity(int id, string name, int categoryId)
         {
             Id = id;

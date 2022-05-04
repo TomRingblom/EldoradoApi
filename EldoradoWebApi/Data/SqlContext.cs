@@ -16,10 +16,12 @@ namespace EldoradoWebApi.Data
         public virtual DbSet<BrandEntity> Brands { get; set; } = null!;
         public virtual DbSet<ColorEntity> Colors { get; set; } = null!;
         public virtual DbSet<CouponEntity> Coupons { get; set; } = null!;
+        public virtual DbSet<CategoryEntity> Categories { get; set; } = null!;
         public virtual DbSet<OrderDetailsEntity> OrderDetails { get; set; } = null!;
         public virtual DbSet<OrderEntity> Orders { get; set; } = null!;
         public virtual DbSet<ProductEntity> Products { get; set; } = null!;
         public virtual DbSet<SizeEntity> Sizes { get; set; } = null!;
+        public virtual DbSet<SubCategoryEntity> SubCategories { get; set; } = null!;
         public virtual DbSet<StatusEntity> Statuses { get; set; } = null!;
     }
 }

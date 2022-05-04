@@ -10,9 +10,9 @@ namespace EldoradoWebApi.Models.Entities
 
         }
 
-        public CategoryEntity(int id, string name)
+        public CategoryEntity( string name)
         {
-            Id = id;
+
             Name = name;
         }
 
