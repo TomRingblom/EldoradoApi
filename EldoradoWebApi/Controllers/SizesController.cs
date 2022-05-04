@@ -54,7 +54,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteSize(int id)
         {
             var size = await _service.DeleteSize(id);
             if (size == null)
