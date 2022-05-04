@@ -1,6 +1,5 @@
-﻿using EldoradoWebApi.Models.Status;
+﻿using EldoradoWebApi.Models.Statuses;
 using EldoradoWebApi.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldoradoWebApi.Controllers
