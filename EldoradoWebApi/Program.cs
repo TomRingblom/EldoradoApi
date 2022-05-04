@@ -1,7 +1,14 @@
+using EldoradoWebApi;
+using EldoradoWebApi.Data;
+using EldoradoWebApi.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+var cString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<SqlContext>(x => x.UseSqlServer(cString));
+builder.Services.AddScopedServices();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -17,6 +24,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
 
