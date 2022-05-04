@@ -14,10 +14,16 @@ namespace EldoradoWebApi.Services
             _context = context;
         }
 
-        public async Task CreateProduct(ProductCreate model)
+        public async Task<ProductObject> CreateProduct(ProductCreate model)
         {
-            await _context.AddAsync(new ProductEntity(model.Name, model.Description, model.Price, model.SubCategoryId,model.SizeId, model.BrandId, model.ColorId, model.StatusId, model.CouponId));
-            await _context.SaveChangesAsync();
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == model.Name);
+            if (product == null)
+            {
+                await _context.AddAsync(new ProductEntity(model.Name, model.Description, model.Price, model.SubCategoryId, model.SizeId, model.BrandId, model.ColorId, model.StatusId));
+                await _context.SaveChangesAsync();
+            }
+
+            return null!;
         }
 
         public async Task<IEnumerable<ProductObject>> GetProducts()

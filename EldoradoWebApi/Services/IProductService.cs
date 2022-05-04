@@ -4,7 +4,7 @@ namespace EldoradoWebApi.Services
 {
     public interface IProductService
     {
-        Task CreateProduct(ProductCreate model);
+        Task<ProductObject> CreateProduct(ProductCreate model);
         Task<IEnumerable<ProductObject>> GetProducts();
         Task<ProductObject> GetProductById(int id);
         Task<ProductObject> UpdateProduct(int id, ProductUpdate model);

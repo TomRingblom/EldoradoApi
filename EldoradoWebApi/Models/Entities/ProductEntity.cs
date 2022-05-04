@@ -10,6 +10,18 @@ namespace EldoradoWebApi.Models.Entities
 
         }
 
+        public ProductEntity(string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            SubCategoryId = subCategoryId;
+            SizeId = sizeId;
+            BrandId = brandId;
+            ColorId = colorId;
+            StatusId = statusId;
+        }
+
         public ProductEntity(string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId, int? couponId)
         {
             Name = name;
