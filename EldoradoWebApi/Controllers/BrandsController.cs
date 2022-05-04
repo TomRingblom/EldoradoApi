@@ -17,24 +17,24 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSize(BrandCreate model)
+        public async Task<IActionResult> CreateBrand(BrandCreate model)
         {
             if (ModelState.IsValid)
             {
                 await _service.CreateBrand(model);
-                return Created("Size created successfully.", null);
+                return Created("Brand created successfully.", null);
             }
             return BadRequest();
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSizes()
+        public async Task<IActionResult> GetBrands()
         {
             return Ok(await _service.GetBrands());
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetSize(int id)
+        public async Task<IActionResult> GetBrandById(int id)
         {
             var brand = await _service.GetBrandById(id);
             if (brand == null)
@@ -44,7 +44,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSize(int id, BrandUpdate model)
+        public async Task<IActionResult> UpdateBrand(int id, BrandUpdate model)
         {
             var brand = await _service.UpdateBrand(id, model);
             if (brand == null)
@@ -58,7 +58,7 @@ namespace EldoradoWebApi.Controllers
         {
             var brand = await _service.DeleteBrand(id);
             if (brand == null)
-                return BadRequest("No size with the specified id was found and could not be deleted.");
+                return BadRequest("No Brand with the specified id was found and could not be deleted.");
 
             return NoContent();
         }
