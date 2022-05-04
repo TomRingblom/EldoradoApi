@@ -1,6 +1,6 @@
-﻿using EldoradoApi.Data;
-using EldoradoApi.Models.Products;
-using EldoradoApi.Services;
+﻿using EldoradoWebApi.Data;
+using EldoradoWebApi.Models.Products;
+using EldoradoWebApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
