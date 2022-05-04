@@ -8,6 +8,11 @@ namespace EldoradoWebApi.Models.Entities
         {
         }
 
+        public CouponEntity(int discount)
+        {
+            Discount = discount;
+        }
+
         public CouponEntity(int id, int discount)
         {
             Id = id;
