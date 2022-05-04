@@ -4,7 +4,7 @@ namespace EldoradoWebApi.Services
 {
     public interface ISubCategoryService
     {
-        Task CreateCategory(SubCategoryCreate model);
+        Task CreateSubCategory(SubCategoryCreate model);
         Task<IEnumerable<SubCategoryObject>> GetSubCategories();
         Task<SubCategoryObject> GetSubCategoryById(int id);
         Task<SubCategoryObject> UpdateSubCategory(int id, SubCategoryUpdate model);

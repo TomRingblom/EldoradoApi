@@ -9,7 +9,7 @@ namespace EldoradoWebApi.Services
     {
         private readonly SqlContext _context;
 
-        public async Task CreateCategory(SubCategoryCreate model)
+        public async Task CreateSubCategory(SubCategoryCreate model)
         {
             await _context.SubCategories.AddAsync(new SubCategoryEntity(model.Name, model.CategoryId));
             await _context.SaveChangesAsync();

@@ -19,7 +19,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder(CategoryCreate model)
+        public async Task<IActionResult> CreateCategory(CategoryCreate model)
         {
             if (ModelState.IsValid)
             {
@@ -30,13 +30,13 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOrders()
+        public async Task<IActionResult> GetCategory()
         {
             return Ok(await _service.GetCategories());
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrder(int id)
+        public async Task<IActionResult> GetCategory(int id)
         {
             var order = await _service.GetCategoryById(id);
             if (order == null)
@@ -46,7 +46,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(int id, CategoryUpdate model)
+        public async Task<IActionResult> UpdateCategory(int id, CategoryUpdate model)
         {
             var order = await _service.UpdateCategory(id, model);
             if (order == null)
@@ -56,7 +56,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
             var order = await _service.DeleteCategory(id);
             if (order == null)
