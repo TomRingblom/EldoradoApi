@@ -22,7 +22,9 @@ namespace EldoradoWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.CreateProduct(model);
+                var product = await _service.CreateProduct(model);
+                if (product == null!)
+                    return BadRequest($"A product with the name '{model.Name}' already exists");   
                 return Created("Product created successfully", null);
             }
             return BadRequest();
