@@ -13,10 +13,17 @@ namespace EldoradoWebApi.Services
         {
             _context = context;
         }
-        public async Task CreateColor(ColorCreate model)
+        public async Task<ColorObject> CreateColor(ColorCreate model)
         {
+           var color = await _context.Colors.Where(x=> x.Name == model.Name).FirstOrDefaultAsync();
+            if(color != null)
+            {
+                return null;
+            }
             await _context.Colors.AddAsync(new ColorEntity(model.Name));
             await _context.SaveChangesAsync();
+
+            return null!;
         }
         public async Task<IEnumerable<ColorObject>> GetColors()
         {
@@ -35,12 +42,17 @@ namespace EldoradoWebApi.Services
         }
 
         public async Task<ColorObject> UpdateColor(int id, ColorUpdate model)
-        {
+        {          
             var color = await _context.Colors.FindAsync(id);
             if (color == null)
                 return null;
 
             color.Name = model.Name;
+            var colorName = await _context.Colors.Where(x => x.Name == model.Name).FirstOrDefaultAsync();
+            if (colorName != null)
+            {
+                return null;
+            }
 
             _context.Entry(color).State = EntityState.Modified;
             await _context.SaveChangesAsync();

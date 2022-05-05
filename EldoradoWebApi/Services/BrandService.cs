@@ -13,10 +13,16 @@ namespace EldoradoWebApi.Services
         {
             _context = context;
         }
-        public async Task CreateBrand(BrandCreate model)
+        public async Task<BrandObject> CreateBrand(BrandCreate model)
         {
+            var brand = await _context.Brands.Where(x => x.Name == model.Name).FirstOrDefaultAsync();
+            if (brand != null)
+            {
+                return null;
+            }
             await _context.Brands.AddAsync(new BrandEntity(model.Name));
             await _context.SaveChangesAsync();
+            return null!;
         }
         public async Task<IEnumerable<BrandObject>> GetBrands()
         {
@@ -41,7 +47,11 @@ namespace EldoradoWebApi.Services
                 return null!;
 
             brand.Name = model.Name;
-
+            var brandName = await _context.Brands.Where(x => x.Name == model.Name).FirstOrDefaultAsync();
+            if (brandName != null)
+            {
+                return null;
+            }
             _context.Entry(brand).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return new BrandObject(brand.Id, brand.Name);

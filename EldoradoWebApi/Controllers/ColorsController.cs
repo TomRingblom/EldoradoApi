@@ -21,8 +21,11 @@ namespace EldoradoWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
+                var color = await _service.CreateColor(model);
+                if (color == null!)
+                    return BadRequest($"A color with the name '{model.Name}' already exists");
                 await _service.CreateColor(model);
-                return Created("Color created successfully.", null);
+                return Created($"Color: '{model.Name}', created successfully.", null);
             }
             return BadRequest();
         }
@@ -47,6 +50,8 @@ namespace EldoradoWebApi.Controllers
         public async Task<IActionResult> UpdateColor(int id, ColorUpdate model)
         {
             var color = await _service.UpdateColor(id, model);
+            if (color == null!)
+                return BadRequest($"A color with the name '{model.Name}' already exists");
             if (color == null)
                 return BadRequest();
 
