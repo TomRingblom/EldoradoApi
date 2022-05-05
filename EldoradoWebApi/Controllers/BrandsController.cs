@@ -21,8 +21,11 @@ namespace EldoradoWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
+                var brand = await _service.CreateBrand(model);
+                if (brand == null!)
+                    return BadRequest($"A brand with the name '{model.Name}' already exists");
                 await _service.CreateBrand(model);
-                return Created("Brand created successfully.", null);
+                return Created($"Brand: '{model.Name}' created successfully.", null);
             }
             return BadRequest();
         }
@@ -47,6 +50,8 @@ namespace EldoradoWebApi.Controllers
         public async Task<IActionResult> UpdateBrand(int id, BrandUpdate model)
         {
             var brand = await _service.UpdateBrand(id, model);
+            if (brand == null!)
+                return BadRequest($"A brand with the name '{model.Name}' already exists");
             if (brand == null)
                 return BadRequest();
 

@@ -4,7 +4,7 @@ namespace EldoradoWebApi.Services
 {
     public interface IColorService
     {
-        Task CreateColor(ColorCreate model);
+        Task <ColorObject>CreateColor(ColorCreate model);
         Task<IEnumerable<ColorObject>> GetColors();
         Task<ColorObject> GetColorById(int id);
         Task<ColorObject> UpdateColor(int id, ColorUpdate model);
