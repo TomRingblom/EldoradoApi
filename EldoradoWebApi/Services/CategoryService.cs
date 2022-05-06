@@ -17,7 +17,7 @@ namespace EldoradoWebApi.Services
 
         public async Task<CategoryObject> CreateCategory(CategoryCreate model)
         {
-            if (_context.Categories.FirstOrDefaultAsync(o => o.Name == model.Name) != null)
+            if ( await _context.Categories.FirstOrDefaultAsync(o => o.Name == model.Name) != null)
             {
                 return null;
             }

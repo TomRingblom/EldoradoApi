@@ -16,7 +16,7 @@ namespace EldoradoWebApi.Services
 
         public async Task<SubCategoryObject> CreateSubCategory(SubCategoryCreate model)
         {
-            if (_context.SubCategories.FirstOrDefaultAsync(o => o.Name == model.Name) != null)
+            if (await _context.SubCategories.FirstOrDefaultAsync(o => o.Name == model.Name) == null)
             {
                 await _context.SubCategories.AddAsync(new SubCategoryEntity(model.Name, model.CategoryId));
                 await _context.SaveChangesAsync();
