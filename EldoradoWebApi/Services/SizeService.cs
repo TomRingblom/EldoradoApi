@@ -14,10 +14,18 @@ public class SizeService : ISizeService
         _context = context;
     }
 
-    public async Task CreateSize(SizeCreate model)
+    public async Task<SizeObject> CreateSize(SizeCreate model)
     {
-        await _context.Sizes.AddAsync(new SizeEntity(model.Name));
-        await _context.SaveChangesAsync();
+        var size = await _context.Sizes.FirstOrDefaultAsync(x => x.Name == model.Name);
+        if (size == null)
+        {
+            await _context.Sizes.AddAsync(new SizeEntity(model.Name));
+            await _context.SaveChangesAsync();
+        }
+        else
+            return null!;
+
+        return new SizeObject(model.Name);
     }
 
     public async Task<IEnumerable<SizeObject>> GetSizes()
@@ -33,7 +41,7 @@ public class SizeService : ISizeService
     public async Task<SizeObject> GetSizeById(int id)
     {
         var size = await _context.Sizes.FirstOrDefaultAsync(o => o.Id == id);
-        return new SizeObject(size.Id, size.Name);
+        return size == null ? null! : new SizeObject(size.Id, size.Name);
     }
 
     public async Task<SizeObject> UpdateSize(int id, SizeUpdate model)

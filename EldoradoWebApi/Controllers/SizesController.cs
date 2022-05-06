@@ -19,12 +19,9 @@ namespace EldoradoWebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSize(SizeCreate model)
         {
-            if (ModelState.IsValid)
-            {
-                await _service.CreateSize(model);
-                return Created("Size created successfully.", null);
-            }
-            return BadRequest();
+            if (!ModelState.IsValid) return BadRequest();
+            var size = await _service.CreateSize(model);
+            return size == null! ? BadRequest($"A size with the given name already exists.") : Created("Size created successfully!", model);
         }
 
         [HttpGet]
@@ -37,30 +34,19 @@ namespace EldoradoWebApi.Controllers
         public async Task<IActionResult> GetSize(int id)
         {
             var size = await _service.GetSizeById(id);
-            if (size == null)
-                return NoContent();
-
-            return Ok(size);
+            return size == null! ? NoContent() : Ok(size);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSize(int id, SizeUpdate model)
         {
-            var size = await _service.UpdateSize(id, model);
-            if (size == null)
-                return BadRequest();
-
-            return NoContent();
+            return await _service.UpdateSize(id, model) == null! ? BadRequest() : NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSize(int id)
         {
-            var size = await _service.DeleteSize(id);
-            if (size == null)
-                return BadRequest("No size with the specified id was found and could not be deleted.");
-
-            return NoContent();
+            return await _service.DeleteSize(id) == null! ? BadRequest("No size with the given id was found and could not be deleted.") : NoContent();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace EldoradoWebApi.Services;
 
 public interface ISizeService
 {
-    Task CreateSize(SizeCreate model);
+    Task<SizeObject> CreateSize(SizeCreate model);
     Task<IEnumerable<SizeObject>> GetSizes();
     Task<SizeObject> GetSizeById(int id);
     Task<SizeObject> UpdateSize(int id, SizeUpdate model);

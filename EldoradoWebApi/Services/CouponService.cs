@@ -15,10 +15,18 @@ public class CouponService : ICouponService
         _context = context;
     }
 
-    public async Task CreateCoupon(CouponCreate model)
+    public async Task<CouponObject> CreateCoupon(CouponCreate model)
     {
-        await _context.Coupons.AddAsync(new CouponEntity(model.Discount));
-        await _context.SaveChangesAsync();
+        var coupon = await _context.Coupons.FirstOrDefaultAsync(c => c.Discount == model.Discount);
+        if (coupon == null)
+        {
+            await _context.Coupons.AddAsync(new CouponEntity(model.Discount));
+            await _context.SaveChangesAsync();
+        }
+        else
+            return null!;
+
+        return new CouponObject(model.Discount);
     }
 
     public async Task<IEnumerable<CouponObject>> GetCoupons()
@@ -34,7 +42,7 @@ public class CouponService : ICouponService
     public async Task<CouponObject> GetCouponById(int id)
     {
         var coupon = await _context.Coupons.FirstOrDefaultAsync(o => o.Id == id);
-        return new CouponObject(coupon.Id, coupon.Discount);
+        return coupon == null ? null! : new CouponObject(coupon!.Id, coupon.Discount);
     }
 
     public async Task<CouponObject> UpdateCoupon(int id, CouponUpdate model)

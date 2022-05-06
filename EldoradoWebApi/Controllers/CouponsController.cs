@@ -18,12 +18,9 @@ namespace EldoradoWebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCoupon(CouponCreate model)
         {
-            if (ModelState.IsValid)
-            {
-                await _service.CreateCoupon(model);
-                return Created("Coupon created successfully.", null);
-            }
-            return BadRequest();
+            if (!ModelState.IsValid) return BadRequest();
+            var coupon = await _service.CreateCoupon(model);
+            return coupon == null! ? BadRequest("A Coupon with the same discount already exists") : Created("Coupon created successfully.", null);
         }
 
         [HttpGet]
@@ -36,30 +33,19 @@ namespace EldoradoWebApi.Controllers
         public async Task<IActionResult> GetCoupon(int id)
         {
             var coupon = await _service.GetCouponById(id);
-            if (coupon == null)
-                return NoContent();
-
-            return Ok(coupon);
+            return coupon == null! ? NoContent() : Ok(coupon);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCoupon(int id, CouponUpdate model)
         {
-            var coupon = await _service.UpdateCoupon(id, model);
-            if (coupon == null!)
-                return BadRequest();
-
-            return NoContent();
+            return await _service.UpdateCoupon(id, model) == null! ? BadRequest() : NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCoupon(int id)
         {
-            var coupon = await _service.DeleteCoupon(id);
-            if (coupon == null)
-                return BadRequest("No coupon with the specified id was found and could not be deleted.");
-
-            return NoContent();
+            return await _service.DeleteCoupon(id) == null! ? BadRequest("No coupon with the given id was found and could not be deleted.") : NoContent();
         }
     }
 }

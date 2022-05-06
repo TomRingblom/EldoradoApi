@@ -7,6 +7,11 @@ public class SizeObject
         
     }
 
+    public SizeObject(string name)
+    {
+        Name = name;
+    }
+
     public SizeObject(int id, string name)
     {
         Id = id;
