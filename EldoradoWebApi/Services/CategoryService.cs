@@ -61,7 +61,7 @@ namespace EldoradoWebApi.Services
             if (category == null)
                 return null!;
 
-            category.Id = model.Id;
+           
             category.Name = model.Name;
 
 
