@@ -33,10 +33,13 @@ namespace EldoradoWebApi.Services
             var category = await _context.Categories.FirstOrDefaultAsync(o => o.Id == id);
             if (category == null)
                 return null!;
+            else
+            {
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+                return new SubCategoryObject(category.Name);
+            }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-            return new SubCategoryObject(category.Name);
         }
 
         public async Task<IEnumerable<SubCategoryObject>> GetSubCategories()
@@ -66,12 +69,17 @@ namespace EldoradoWebApi.Services
             if (category == null)
                 return null!;
 
-            category.Id = model.Id;
+
+            else
+            {
+                category.Id = model.Id;
 
 
-            _context.Entry(category).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return new SubCategoryObject(category.Name);
+                _context.Entry(category).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return new SubCategoryObject(category.Name);
+            }
+
         }
     }
 }
