@@ -22,44 +22,66 @@ namespace EldoradoWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.CreateSubCategory(model);
-                return Created("SubCategory created successfully.", null);
+                var result = await _service.CreateSubCategory(model);
+
+                if (result == null)
+                {
+                    return BadRequest("A Subcategory with that name already exists");
+                }
+
+                return Created("SubCategory created successfully.", result);
             }
             return BadRequest();
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSubCategory()
+        public async Task<IActionResult> GetSubCategory(int id)
         {
-            return Ok(await _service.GetSubCategories());
+            var result = await _service.GetSubCategoryById(id);
+
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest("Could not find Subcategory");
+            }
+
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrder(int id)
+        public async Task<IActionResult> GetSubCategories(int id)
         {
-            var order = await _service.GetSubCategoryById(id);
-            if (order == null)
+            var result = await _service.GetSubCategories();
+            if (result == null)
                 return NoContent();
 
-            return Ok(order);
+            else
+            {
+                return Ok(result);
+            }
+
+
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(int id, SubCategoryUpdate model)
+        public async Task<IActionResult> UpdateSubCategory(int id, SubCategoryUpdate model)
         {
-            var order = await _service.UpdateSubCategory(id, model);
-            if (order == null)
+            var result = await _service.UpdateSubCategory(id, model);
+            if (result == null)
                 return BadRequest();
 
-            return NoContent();
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteSubCategory(int id)
         {
             var order = await _service.DeleteSubCategory(id);
             if (order == null)
-                return BadRequest("No category with the specified id was found and could not be deleted.");
+                return BadRequest("No Subcategory with the specified id was found and could not be deleted.");
 
             return NoContent();
         }
