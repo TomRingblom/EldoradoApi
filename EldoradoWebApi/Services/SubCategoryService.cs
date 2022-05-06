@@ -72,7 +72,7 @@ namespace EldoradoWebApi.Services
 
             else
             {
-                category.Id = model.Id;
+               
 
 
                 _context.Entry(category).State = EntityState.Modified;
