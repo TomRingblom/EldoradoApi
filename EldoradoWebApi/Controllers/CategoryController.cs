@@ -23,10 +23,15 @@ namespace EldoradoWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.CreateCategory(model);
-                return Created("Category created successfully.", null);
+                var result = await _service.CreateCategory(model);
+
+                if (result == null)
+                {
+                    return BadRequest("Category name already exists");
+                }
+                return Created("Category created successfully.", result);
             }
-            return BadRequest();
+            return BadRequest("Modelstate invalid");
         }
 
         [HttpGet]
@@ -40,32 +45,41 @@ namespace EldoradoWebApi.Controllers
         {
             var order = await _service.GetCategoryById(id);
             if (order == null)
-                return NoContent();
+            {
+                return BadRequest("Could not find Category");
+            }
+            else
+            {
+                return Ok(order);
+            }
 
-            return Ok(order);
+
+
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategory(int id, CategoryUpdate model)
         {
-            var order = await _service.UpdateCategory(id, model);
-            if (order == null)
-                return BadRequest();
+            var result = await _service.UpdateCategory(id, model);
+            if (result == null)
+                return BadRequest("");
 
-            return NoContent();
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var order = await _service.DeleteCategory(id);
-            if (order == null)
+            var result = await _service.DeleteCategory(id);
+            if (result == null)
                 return BadRequest("No category with the specified id was found and could not be deleted.");
 
-            return NoContent();
+            return Ok(result);
         }
     }
 }
+
+
 
 
 
