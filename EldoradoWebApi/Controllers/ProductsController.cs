@@ -52,14 +52,14 @@ namespace EldoradoWebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, ProductUpdate model)
         {
-            var product = await _service.UpdateProduct(id, model);
-
-            if (product == null)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                var product = await _service.UpdateProduct(id, model);
+                if (product == null!)
+                    return BadRequest($"A product with the name '{model.Name}' already exists");
+                return Ok("Product updated successfully");
             }
-
-            return NoContent();
+            return BadRequest();
         }
 
         [HttpDelete("{id}")]
