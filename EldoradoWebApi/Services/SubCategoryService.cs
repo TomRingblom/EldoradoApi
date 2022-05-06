@@ -9,10 +9,23 @@ namespace EldoradoWebApi.Services
     {
         private readonly SqlContext _context;
 
+        public SubCategoryService(SqlContext context)
+        {
+            _context = context;
+        }
+
         public async Task CreateSubCategory(SubCategoryCreate model)
         {
-            await _context.SubCategories.AddAsync(new SubCategoryEntity(model.Name, model.CategoryId));
-            await _context.SaveChangesAsync();
+            if(_context.SubCategories.FirstOrDefaultAsync(o => o.Name == model.Name) != null)
+            {
+                await _context.SubCategories.AddAsync(new SubCategoryEntity(model.Name, model.CategoryId));
+                await _context.SaveChangesAsync();
+
+                return new SubCategoryObject(model.Name);
+            }
+
+            return null!;
+            
         }
 
         public async Task<SubCategoryObject> DeleteSubCategory(int id)
@@ -39,6 +52,11 @@ namespace EldoradoWebApi.Services
         public async Task<SubCategoryObject> GetSubCategoryById(int id)
         {
             var category = await _context.SubCategories.FirstOrDefaultAsync(c => c.Id == id);
+            if ( category == null)
+            {
+                return null!;
+            }
+            
             return new SubCategoryObject(category.Name);
         }
 

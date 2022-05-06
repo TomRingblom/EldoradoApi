@@ -22,8 +22,14 @@ namespace EldoradoWebApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.CreateSubCategory(model);
-                return Created("SubCategory created successfully.", null);
+                var result = await _service.CreateSubCategory(model);
+
+                if(result == null)
+                {
+                    return BadRequest("A Subcategory with that name already exists");
+                }
+
+                return Created("SubCategory created successfully.", result);
             }
             return BadRequest();
         }
