@@ -83,5 +83,8 @@ namespace EldoradoWebApi.Models.Entities
 
         public int? CouponId { get; set; }
         public CouponEntity Coupon { get; set; } = null!;
+
+        public ICollection<TagEntity> Tags { get; set; }
+
     }
 }

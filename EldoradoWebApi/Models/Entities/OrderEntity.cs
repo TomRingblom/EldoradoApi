@@ -34,5 +34,8 @@ namespace EldoradoWebApi.Models.Entities
         [Required]
         [Column(TypeName = "datetime2")]
         public DateTime OrderChangeDate { get; set; }
+
+        public int AdressId { get; set; }
+        public AdressEntity AdressEntity { get; set; }
     }
 }

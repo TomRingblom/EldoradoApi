@@ -23,5 +23,7 @@ namespace EldoradoWebApi.Data
         public virtual DbSet<SizeEntity> Sizes { get; set; } = null!;
         public virtual DbSet<SubCategoryEntity> SubCategories { get; set; } = null!;
         public virtual DbSet<StatusEntity> Statuses { get; set; } = null!;
+        public virtual DbSet<TagEntity> Tags { get; set; }
+        public virtual DbSet<AdressEntity> Adresses { get; set; }
     }
 }
