@@ -7,6 +7,11 @@ public class CouponObject
 
     }
 
+    public CouponObject(int discount)
+    {
+        Discount = discount;
+    }
+
     public CouponObject(int id, int discount)
     {
         Id = id;

@@ -4,7 +4,7 @@ namespace EldoradoWebApi.Services;
 
 public interface ICouponService
 {
-    Task CreateCoupon(CouponCreate model);
+    Task<CouponObject> CreateCoupon(CouponCreate model);
     Task<IEnumerable<CouponObject>> GetCoupons();
     Task<CouponObject> GetCouponById(int id);
     Task<CouponObject> UpdateCoupon(int id, CouponUpdate model);

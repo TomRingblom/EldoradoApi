@@ -22,7 +22,7 @@ namespace EldoradoWebApi.Services
             }
             await _context.Brands.AddAsync(new BrandEntity(model.Name));
             await _context.SaveChangesAsync();
-            return null!;
+            return new BrandObject(model.Name);
         }
         public async Task<IEnumerable<BrandObject>> GetBrands()
         {
