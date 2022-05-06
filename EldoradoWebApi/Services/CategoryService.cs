@@ -15,11 +15,17 @@ namespace EldoradoWebApi.Services
             _context = context;
         }
 
-        public async Task CreateCategory(CategoryCreate model)
+        public async Task<CategoryObject> CreateCategory(CategoryCreate model)
         {
+            if (_context.Categories.FirstOrDefaultAsync(o => o.Name == model.Name) != null)
+            {
+                return null;
+            }
             await _context.Categories.AddAsync(new CategoryEntity(model.Name));
             await _context.SaveChangesAsync();
-            
+
+            return new CategoryObject(model.Name);
+
         }
 
 
@@ -37,7 +43,16 @@ namespace EldoradoWebApi.Services
         public async Task<CategoryObject> GetCategoryById(int id)
         {
             var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
-            return new CategoryObject(category.Name);
+
+            if (category == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new CategoryObject(category.Name);
+            }
+
         }
 
         public async Task<CategoryObject> UpdateCategory(int id, CategoryUpdate model)
@@ -47,10 +62,13 @@ namespace EldoradoWebApi.Services
                 return null!;
 
             category.Id = model.Id;
-           
+            category.Name = model.Name;
+
 
             _context.Entry(category).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
+
             return new CategoryObject(category.Name);
         }
 
