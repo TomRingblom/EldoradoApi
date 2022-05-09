@@ -44,7 +44,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(int id, AddressUpdate model)
+        public async Task<IActionResult> UpdateAddress(int id, AddressUpdate model)
         {
             var order = await _service.UpdateAddress(id, model);
             if (order == null)
@@ -54,7 +54,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteAddress(int id)
         {
             var order = await _service.DeleteAddress(id);
             if (order == null)
