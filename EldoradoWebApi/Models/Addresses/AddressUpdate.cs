@@ -8,6 +8,7 @@ namespace EldoradoWebApi.Models.Addresses
         {
 
         }
+
         public AddressUpdate(string street, string city, string postalCode)
         {
             Street = street;

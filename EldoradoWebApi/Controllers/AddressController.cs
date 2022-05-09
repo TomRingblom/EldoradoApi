@@ -22,7 +22,7 @@ namespace EldoradoWebApi.Controllers
             if (ModelState.IsValid)
             {
                 await _service.CreateAddress(model);
-                return Created("Address created successfully.", null);
+                return Created("Address created successfully.", model);
             }
             return BadRequest();
         }

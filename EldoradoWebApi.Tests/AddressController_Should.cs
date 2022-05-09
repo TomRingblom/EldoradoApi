@@ -27,8 +27,9 @@ namespace EldoradoWebApi.Tests
 
             //Assert
 
-            var okObjectresult = Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<AddressObject>(okObjectresult.Value);
+             Assert.IsType<OkObjectResult>(result);
+            //Assert.IsType<AddressObject>(okObjectresult.Value);
+            //var okObjectresult =
         }
 
         [Fact]
@@ -36,25 +37,29 @@ namespace EldoradoWebApi.Tests
         {
             //Arrange
             var moqAddressService = new Mock<IAddressService>();
+            moqAddressService.Setup(service => service.GetAddresses())
+                .ReturnsAsync(new List<AddressObject>());
             var sut = new AddressController(moqAddressService.Object);
 
             //Act
             var result = await sut.GetAddresses();
 
             //Assert
-         
-           var okObjectresult = Assert.IsType<OkObjectResult>(result);
-           Assert.IsType<AddressObject[]>(okObjectresult.Value);
+            moqAddressService.Verify(service => service.GetAddresses(), Times.Once());
+            var okObjectresult = Assert.IsType<OkObjectResult>(result);
 
-            
-            
-           
         }
-
-
+        [Fact]
         public async Task CreateAddress_ReturnCreatedAddress()
-        {
+        {    //Arrange
 
+            var moqAddressService = new Mock<IAddressService>();
+            var sut = new AddressController(moqAddressService.Object);
+
+            //Act
+            var result = await sut.CreateAddress(new AddressCreate(1, "Gata 1", "Stad 1", "123124"));
+
+            Assert.IsType<CreatedResult>(result);
         }
     }
 }
