@@ -52,7 +52,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSubCategories(int id)
+        public async Task<IActionResult> GetSubCategories()
         {
             var result = await _service.GetSubCategories();
             if (result == null)
