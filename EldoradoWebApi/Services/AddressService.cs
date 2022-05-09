@@ -10,6 +10,11 @@ namespace EldoradoWebApi.Services
 
         private readonly SqlContext _context;
 
+        public AddressService(SqlContext context)
+        {
+            _context = context;
+        }
+
         public async Task<AddressObject> CreateAddress(AddressCreate model)
         {
 

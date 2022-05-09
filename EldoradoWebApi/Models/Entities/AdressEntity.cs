@@ -11,6 +11,10 @@ namespace EldoradoWebApi.Models.Entities
             City = city;
             PostalCode = postalCode;
         }
+        public AdressEntity()
+        {
+
+        }
 
         [Key]
         public int Id { get; set; }
