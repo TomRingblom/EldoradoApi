@@ -34,7 +34,7 @@ namespace EldoradoWebApi.Controllers
             return BadRequest();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSubCategory(int id)
         {
             var result = await _service.GetSubCategoryById(id);
@@ -51,7 +51,7 @@ namespace EldoradoWebApi.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<IActionResult> GetSubCategories(int id)
         {
             var result = await _service.GetSubCategories();
