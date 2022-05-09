@@ -4,6 +4,11 @@ namespace EldoradoWebApi.Models.Addresses
 {
     public class AddressObject
     {
+
+        public AddressObject()
+        {
+
+        }
         public AddressObject(string street, string city, string postalCode)
         {
             Street = street;
