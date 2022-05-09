@@ -35,7 +35,7 @@ namespace EldoradoWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCategory()
+        public async Task<IActionResult> GetCategories()
         {
             return Ok(await _service.GetCategories());
         }

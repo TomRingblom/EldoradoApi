@@ -1,10 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EldoradoWebApi.Models.Entities
+namespace EldoradoWebApi.Models.Addresses
 {
-    public class AdressEntity
+    public class AddressObject
     {
-        public AdressEntity(int userId, string street, string city, string postalCode)
+        public AddressObject(string street, string city, string postalCode)
+        {
+            Street = street;
+            City = city;
+            PostalCode = postalCode;
+        }
+
+        public AddressObject(int userId, string street, string city, string postalCode)
         {
             UserId = userId;
             Street = street;
@@ -12,8 +19,6 @@ namespace EldoradoWebApi.Models.Entities
             PostalCode = postalCode;
         }
 
-        [Key]
-        public int Id { get; set; }
         [Required]
         public int UserId { get; set; }
         [Required]
@@ -23,8 +28,5 @@ namespace EldoradoWebApi.Models.Entities
         [Required]
         public string PostalCode { get; set; } = null!;
 
-        public ICollection<OrderEntity> Order { get; set; } = null!;
-
     }
-
 }

@@ -73,7 +73,7 @@ namespace EldoradoWebApi.Services
             else
             {
                
-
+                category.Name = model.Name;
 
                 _context.Entry(category).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
