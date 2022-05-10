@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Models\Coupons\" />
+    <Folder Include="Models\Tags\" />
     <Folder Include="Models\Statuses\" />
   </ItemGroup>
 
