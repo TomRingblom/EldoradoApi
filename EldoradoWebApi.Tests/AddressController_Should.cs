@@ -28,8 +28,6 @@ namespace EldoradoWebApi.Tests
             //Assert
 
              Assert.IsType<OkObjectResult>(result);
-            //Assert.IsType<AddressObject>(okObjectresult.Value);
-            //var okObjectresult =
         }
 
         [Fact]

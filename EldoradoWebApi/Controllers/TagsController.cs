@@ -3,7 +3,8 @@ using EldoradoWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EldoradoWebApi.Controllers;
-
+[Route("api/[controller]")]
+[ApiController]
 public class TagsController : Controller
 {
     private readonly ITagService _service;

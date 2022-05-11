@@ -65,8 +65,6 @@ namespace EldoradoWebApi.Services
             if (address == null)
                 return null!;
 
-
-
             else
             {
                 address.Street = model.Street;

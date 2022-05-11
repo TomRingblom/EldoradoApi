@@ -30,6 +30,21 @@ namespace EldoradoWebApi.Models.Products
             StatusName = statusName;
         }
 
+        public ProductObject(int id, string name, string description, double price, string categoryName, string subCategoryName, string sizeName, string brandName, string colorName, string statusName, List<string> tagNames)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Price = price;
+            CategoryName = categoryName;
+            SubCategoryName = subCategoryName;
+            SizeName = sizeName;
+            BrandName = brandName;
+            ColorName = colorName;
+            StatusName = statusName;
+            TagNames = tagNames;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
@@ -40,7 +55,7 @@ namespace EldoradoWebApi.Models.Products
         public string BrandName { get; set; } = null!;
         public string ColorName { get; set; } = null!;
         public string StatusName { get; set; } = null!;
-        public List<string> TagNames { get; set; }
+        public List<string> TagNames { get; set;}
         public int DiscountCoupon { get; set; }
     }
 }
