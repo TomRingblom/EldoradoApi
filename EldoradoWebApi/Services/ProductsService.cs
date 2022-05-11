@@ -19,7 +19,15 @@ namespace EldoradoWebApi.Services
             var product = await _context.Products.FirstOrDefaultAsync(x => x.Name == model.Name);
             if (product == null)
             {
-                await _context.AddAsync(new ProductEntity(model.Name, model.Description, model.Price, model.SubCategoryId, model.SizeId, model.BrandId, model.ColorId, model.StatusId));
+                await _context.AddAsync(new ProductEntity(
+                    model.Name, 
+                    model.Description, 
+                    model.Price, 
+                    model.SubCategoryId, 
+                    model.SizeId, 
+                    model.BrandId, 
+                    model.ColorId, 
+                    model.StatusId));
                 await _context.SaveChangesAsync();
             }
             return null!;
@@ -29,9 +37,29 @@ namespace EldoradoWebApi.Services
         {
             var products = new List<ProductObject>();
 
-            foreach (var product in await _context.Products.ToListAsync())
+            foreach (var product in await _context.Products.
+                         Include(x => x.SubCategory).
+                         ThenInclude(x => x.Category).
+                         Include(x => x.Size).
+                         Include(x => x.Brand).
+                         Include(x => x.Color).
+                         Include(x => x.Status).
+                         Include(x => x.Tags).
+                         ToListAsync())
             {
-                products.Add(new ProductObject(product.Id, product.Name, product.Description, product.Price));
+                var tags = product.Tags.Select(tag => tag.Name).ToList();
+                products.Add(new ProductObject(
+                    product.Id, 
+                    product.Name, 
+                    product.Description, 
+                    product.Price, 
+                    product.SubCategory.Category.Name, 
+                    product.SubCategory.Name, 
+                    product.Size.Name, 
+                    product.Brand.Name, 
+                    product.Color.Name,
+                    tags,
+                    product.Status.Name));
             }
 
             return products;
@@ -39,9 +67,29 @@ namespace EldoradoWebApi.Services
 
         public async Task<ProductObject> GetProductById(int id)
         {
-            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _context.Products.
+                Include(x => x.SubCategory).
+                ThenInclude(x => x.Category).
+                Include(x => x.Size).
+                Include(x => x.Brand).
+                Include(x => x.Color).
+                Include(x => x.Status).
+                Include(x => x.Tags).
+                FirstOrDefaultAsync(p => p.Id == id);
 
-            return new ProductObject(product.Id, product.Name, product.Description, product.Price);
+            var tags = product.Tags.Select(tag => tag.Name).ToList();
+            return new ProductObject(
+                product.Id, 
+                product.Name, 
+                product.Description, 
+                product.Price, 
+                product.SubCategory.Category.Name, 
+                product.SubCategory.Name, 
+                product.Size.Name, 
+                product.Brand.Name, 
+                product.Color.Name,
+                tags,
+                product.Status.Name);
         }
 
         public async Task<ProductObject> UpdateProduct(int id, ProductUpdate model)
@@ -65,12 +113,23 @@ namespace EldoradoWebApi.Services
                 product.BrandId = model.BrandId;
                 product.ColorId = model.ColorId;
                 product.StatusId = model.StatusId;
+                product.Tags = model.TagNames;
                 product.CouponId = model.CouponId;
 
                 _context.Entry(product).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
-                return new ProductObject(product.Id, product.Name, product.Description, product.Price);
+                return new ProductObject(
+                    product.Id,
+                    product.Name,
+                    product.Description,
+                    product.Price,
+                    product.SubCategory.Category.Name,
+                    product.SubCategory.Name,
+                    product.Size.Name,
+                    product.Brand.Name,
+                    product.Color.Name,
+                    product.Status.Name);
             }
             return null!;
         }
@@ -87,7 +146,7 @@ namespace EldoradoWebApi.Services
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
-            return new ProductObject(product.Id, product.Name, product.Description, product.Price);
+            return new ProductObject(product.Name);
         }
     }
 }

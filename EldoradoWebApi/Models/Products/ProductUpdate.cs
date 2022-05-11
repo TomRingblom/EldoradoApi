@@ -11,6 +11,7 @@
         public int BrandId { get; set; }
         public int ColorId { get; set; }
         public int StatusId { get; set; }
+        public List<string> TagNames { get; set; }
         public int CouponId { get; set; }
     }
 }
