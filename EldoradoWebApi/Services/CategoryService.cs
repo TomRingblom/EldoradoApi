@@ -61,15 +61,14 @@ namespace EldoradoWebApi.Services
             if (category == null)
                 return null!;
 
-           
-            category.Name = model.Name;
+            else
+            {
+                category.Name = model.Name;
+                _context.Entry(category).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
 
-
-            _context.Entry(category).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-
-            return new CategoryObject(category.Name);
+                return new CategoryObject(category.Name);
+            }
         }
 
         public async Task<CategoryObject> DeleteCategory(int id)
