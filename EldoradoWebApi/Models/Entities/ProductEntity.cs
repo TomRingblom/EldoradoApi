@@ -10,7 +10,7 @@ namespace EldoradoWebApi.Models.Entities
 
         }
 
-        public ProductEntity(string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId)
+        public ProductEntity(string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId, List<TagEntity> tags)
         {
             Name = name;
             Description = description;
@@ -20,6 +20,7 @@ namespace EldoradoWebApi.Models.Entities
             BrandId = brandId;
             ColorId = colorId;
             StatusId = statusId;
+            Tags = tags;
         }
 
         public ProductEntity(string name, string description, double price, int subCategoryId, int sizeId, int brandId, int colorId, int statusId, int? couponId)
@@ -48,6 +49,10 @@ namespace EldoradoWebApi.Models.Entities
             StatusId = statusId;
             CouponId = couponId;
         }
+
+
+
+
 
         [Key]
         public int Id { get; set; }

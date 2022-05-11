@@ -21,6 +21,7 @@ namespace EldoradoWebApi.Services
             {
                 return null;
             }
+
             await _context.Categories.AddAsync(new CategoryEntity(model.Name));
             await _context.SaveChangesAsync();
 

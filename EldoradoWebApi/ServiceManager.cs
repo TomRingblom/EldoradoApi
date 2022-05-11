@@ -17,5 +17,6 @@ public static class ServiceManager
         service.AddScoped<IStatusService, StatusService>();
         service.AddScoped<ISubCategoryService, SubCategoryService>();
         service.AddScoped<IAddressService, AddressService > ();
+        service.AddScoped<ITagService, TagService>();
     }
 }
