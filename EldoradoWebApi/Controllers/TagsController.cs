@@ -32,7 +32,7 @@ public class TagsController : Controller
     public async Task<IActionResult> GetTag(int id)
     {
         var tag = await _service.GetTagById(id);
-        return tag == null! ? NoContent() : Ok(tag);
+        return tag == null! ? NotFound() : Ok(tag);
     }
 
     [HttpPut("{id}")]
