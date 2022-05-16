@@ -1,5 +1,6 @@
 ﻿using EldoradoWebApi.Models.Sizes;
 using EldoradoWebApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,12 +38,14 @@ namespace EldoradoWebApi.Controllers
             return size == null! ? NoContent() : Ok(size);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSize(int id, SizeUpdate model)
         {
             return await _service.UpdateSize(id, model) == null! ? BadRequest() : NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSize(int id)
         {
