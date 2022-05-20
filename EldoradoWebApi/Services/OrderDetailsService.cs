@@ -31,8 +31,23 @@ namespace EldoradoWebApi.Services
 
         public async Task<IEnumerable<OrderDetailsObject>> GetDetails(int id)
         {
-           var detailsRow = await _context.OrderDetails.Include(x=> x.Product).Include(x => x.Order).Where(x=> x.OrderId == id).ToListAsync();
             var detailsRowList = new List<OrderDetailsObject>();
+            if (id <= 0)
+            {
+                var row = await _context.OrderDetails.Include(x => x.Product).Include(y => y.Order).ToListAsync();
+                
+                foreach (var item in row)
+                {
+                    detailsRowList.Add(new OrderDetailsObject(
+                        item.OrderId,
+                        item.Product.Name,
+                        item.Price,
+                        item.Quantity));
+                    
+                }
+                return detailsRowList;
+            }
+            var detailsRow = await _context.OrderDetails.Include(x=> x.Product).Include(x => x.Order).Where(x=> x.OrderId == id).ToListAsync();           
             foreach(var item in detailsRow)
             {
                 detailsRowList.Add(new OrderDetailsObject(
