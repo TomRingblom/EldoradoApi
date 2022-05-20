@@ -16,7 +16,7 @@ namespace EldoradoWebApi.Models.Addresses
             PostalCode = postalCode;
         }
 
-        public AddressObject(int userId, string street, string city, string postalCode)
+        public AddressObject(string userId, string street, string city, string postalCode)
         {
             UserId = userId;
             Street = street;
@@ -25,7 +25,7 @@ namespace EldoradoWebApi.Models.Addresses
         }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         [Required]
         public string Street { get; set; } = null!;
         [Required]
