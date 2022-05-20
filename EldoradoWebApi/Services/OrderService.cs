@@ -8,15 +8,21 @@ namespace EldoradoWebApi.Services;
 public class OrderService : IOrderService
 {
     private readonly SqlContext _context;
-
-    public OrderService(SqlContext context)
+    private readonly IOrderDetailsService _orderDetailsService;
+    public OrderService(SqlContext context, IOrderDetailsService details)
     {
         _context = context;
+        _orderDetailsService = details;
+        
     }
     
     public async Task CreateOrder(OrderCreate model)
     {
-        await _context.Orders.AddAsync(new OrderEntity(model.CustomerId, DateTime.Now, DateTime.Now, model.AddressId));
+        var entity = await _context.Orders.AddAsync(new OrderEntity(model.CustomerId, DateTime.Now, DateTime.Now, model.AddressId));
+        foreach(var item in model.Details)
+        {
+            await _orderDetailsService.CreateDetails(item);
+        }
         await _context.SaveChangesAsync();
     }
 
