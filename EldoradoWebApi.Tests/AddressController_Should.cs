@@ -23,7 +23,7 @@ namespace EldoradoWebApi.Tests
             var sut = new AddressController(moqAddressService.Object);
 
             //Act
-            var result = await sut.GetAddress(1);
+            var result = await sut.GetAddress(1,"");
 
             //Assert
 
