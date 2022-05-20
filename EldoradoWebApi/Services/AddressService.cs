@@ -18,10 +18,10 @@ namespace EldoradoWebApi.Services
         public async Task<AddressObject> CreateAddress(AddressCreate model)
         {
 
-            await _context.Adresses.AddAsync(new AdressEntity(model.UserId ,model.Street,model.PostalCode, model.City));
+            await _context.Adresses.AddAsync(new AdressEntity(model.CustomerId, model.Street,model.PostalCode, model.City));
             await _context.SaveChangesAsync();
 
-            return new AddressObject(model.UserId, model.Street,model.City,model.PostalCode);
+            return new AddressObject(model.CustomerId, model.Street,model.City,model.PostalCode);
         }
 
         public async Task<AddressObject> DeleteAddress(int id)
@@ -33,7 +33,7 @@ namespace EldoradoWebApi.Services
             {
                 _context.Adresses.Remove(address);
                 await _context.SaveChangesAsync();
-                return new AddressObject(address.UserId, address.Street, address.City, address.PostalCode);
+                return new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode);
             }
         }
 
@@ -42,7 +42,7 @@ namespace EldoradoWebApi.Services
             var addressList = new List<AddressObject>();
             foreach (var address in await _context.Adresses.ToListAsync())
             {
-                addressList.Add(new AddressObject(address.UserId, address.Street, address.City, address.PostalCode));
+                addressList.Add(new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode));
             }
             return addressList;
         }
@@ -55,7 +55,7 @@ namespace EldoradoWebApi.Services
                 return null!;
             }
 
-            return new AddressObject(address.UserId, address.Street, address.City, address.PostalCode);
+            return new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode);
         }
 
         public async Task<AddressObject> UpdateAddress(int id, AddressUpdate model)
@@ -73,7 +73,7 @@ namespace EldoradoWebApi.Services
 
                 _context.Entry(address).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return new AddressObject(address.UserId, address.Street, address.City, address.PostalCode);
+                return new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode);
             }
         }
     }

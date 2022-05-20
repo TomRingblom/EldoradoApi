@@ -4,9 +4,9 @@ namespace EldoradoWebApi.Models.Entities
 {
     public class AdressEntity
     {
-        public AdressEntity(string userId, string street, string city, string postalCode)
+        public AdressEntity(string customerId, string street, string city, string postalCode)
         {
-            UserId = userId;
+            CustomerId =  customerId;
             Street = street;
             City = city;
             PostalCode = postalCode;
@@ -19,7 +19,7 @@ namespace EldoradoWebApi.Models.Entities
         [Key]
         public int Id { get; set; }
         [Required]
-        public string UserId { get; set; }
+        public string CustomerId { get; set; }
         [Required]
         public string Street { get; set; } = null!;
         [Required]
