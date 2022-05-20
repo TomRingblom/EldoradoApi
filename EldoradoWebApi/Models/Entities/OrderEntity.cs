@@ -9,11 +9,12 @@ namespace EldoradoWebApi.Models.Entities
         {
         }
 
-        public OrderEntity(string customerId, DateTime orderDate, DateTime orderChangeDate)
+        public OrderEntity(string customerId, DateTime orderDate, DateTime orderChangeDate, int adressId)
         {
             CustomerId = customerId;
             OrderDate = orderDate;
             OrderChangeDate = orderChangeDate;
+            AdressId = adressId;
         }
 
         public OrderEntity(int id, string customerId, DateTime orderDate, DateTime orderChangeDate)
@@ -36,6 +37,6 @@ namespace EldoradoWebApi.Models.Entities
         public DateTime OrderChangeDate { get; set; }
 
         public int AdressId { get; set; }
-        public AdressEntity AdressEntity { get; set; }
+        public AdressEntity Adress { get; set; }
     }
 }

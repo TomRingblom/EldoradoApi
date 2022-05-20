@@ -55,7 +55,7 @@ namespace EldoradoWebApi.Tests
             var sut = new AddressController(moqAddressService.Object);
 
             //Act
-            var result = await sut.CreateAddress(new AddressCreate(1, "Gata 1", "Stad 1", "123124"));
+            var result = await sut.CreateAddress(new AddressCreate(1, "Gata 2", "Stad 2", "111124"));
 
             Assert.IsType<CreatedResult>(result);
         }

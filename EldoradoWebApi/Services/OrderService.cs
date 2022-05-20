@@ -16,7 +16,7 @@ public class OrderService : IOrderService
     
     public async Task CreateOrder(OrderCreate model)
     {
-        await _context.Orders.AddAsync(new OrderEntity(model.CustomerId, DateTime.Now, DateTime.Now));
+        await _context.Orders.AddAsync(new OrderEntity(model.CustomerId, DateTime.Now, DateTime.Now, model.AddressId));
         await _context.SaveChangesAsync();
     }
 
@@ -33,7 +33,16 @@ public class OrderService : IOrderService
     public async Task<OrderObject> GetOrderById(int id)
     {
         var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == id);
-        return new OrderObject(order.Id, order.CustomerId, order.OrderDate, order.OrderChangeDate);
+        if (order == null)
+        {
+            return null!;
+        }
+        else
+        {
+            return new OrderObject(order.Id, order.CustomerId, order.OrderDate, order.OrderChangeDate);
+        }
+            
+        
     }
 
     public async Task<OrderObject> UpdateOrder(int id, OrderUpdate model)

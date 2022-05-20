@@ -9,11 +9,10 @@ public class OrderDetailsEntity
     {
     }
 
-    public OrderDetailsEntity(int orderId, int productId, string productName, double price, int quantity)
+    public OrderDetailsEntity(int orderId, int productId, double price, int quantity)
     {
         OrderId = orderId;
         ProductId = productId;
-        Product.Name = productName;
         Price = price;
         Quantity = quantity;
     }

@@ -21,7 +21,7 @@ namespace EldoradoWebApi.Services
            var product = await _context.Products.Where(y=> y.Id == model.ProductId).FirstOrDefaultAsync();
            double prodPrice = product.Price;
             
-            var detailsEntity = new OrderDetailsEntity(orders.Id,model.ProductId,product.Name,prodPrice,model.Quantity);
+            var detailsEntity = new OrderDetailsEntity(orders.Id,model.ProductId,prodPrice,model.Quantity);
 
              _context.OrderDetails.Add(detailsEntity);
             await _context.SaveChangesAsync();
