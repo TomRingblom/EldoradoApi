@@ -19,10 +19,11 @@ public class OrderService : IOrderService
     public async Task CreateOrder(OrderCreate model)
     { var order = new OrderEntity(model.CustomerId, DateTime.Now, DateTime.Now, model.AddressId);
             await _context.Orders.AddAsync(order);
-
-        foreach(var item in model.Details)
+            await _context.SaveChangesAsync();
+        var createdOrders = await _context.Orders.OrderByDescending(x => x.Id).Where(a => a.CustomerId == model.CustomerId).FirstOrDefaultAsync();
+        foreach (var item in model.Details)
         {
-            item.OrderId = order.Id;
+            item.OrderId = createdOrders.Id;
             await _orderDetailsService.CreateDetails(item);
         }
         await _context.SaveChangesAsync();
