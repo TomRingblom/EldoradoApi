@@ -17,11 +17,11 @@ namespace EldoradoWebApi.Services
 
         public async Task CreateDetails(OrderDetailsCreate model)
         {
-           var orders = await _context.Orders.OrderByDescending(x=> x.Id).FirstOrDefaultAsync();
+           
            var product = await _context.Products.Where(y=> y.Id == model.ProductId).FirstOrDefaultAsync();
            double prodPrice = product.Price;
             
-            var detailsEntity = new OrderDetailsEntity(orders.Id,model.ProductId,prodPrice,model.Quantity);
+            var detailsEntity = new OrderDetailsEntity(model.OrderId,model.ProductId,prodPrice,model.Quantity);
 
              _context.OrderDetails.Add(detailsEntity);
             await _context.SaveChangesAsync();
