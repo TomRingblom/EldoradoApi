@@ -18,10 +18,10 @@ namespace EldoradoWebApi.Services
         public async Task<AddressObject> CreateAddress(AddressCreate model)
         {
 
-            await _context.Adresses.AddAsync(new AdressEntity(model.CustomerId ,model.Street,model.PostalCode, model.City));
+            await _context.Adresses.AddAsync(new AdressEntity(model.CustomerId, model.Street, model.PostalCode, model.City));
             await _context.SaveChangesAsync();
 
-            return new AddressObject(model.CustomerId, model.Street,model.City,model.PostalCode);
+            return new AddressObject(model.CustomerId, model.Street, model.City, model.PostalCode);
         }
 
         public async Task<AddressObject> DeleteAddress(int id)
@@ -33,7 +33,7 @@ namespace EldoradoWebApi.Services
             {
                 _context.Adresses.Remove(address);
                 await _context.SaveChangesAsync();
-                return new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode);
+                return new AddressObject(address.Id, address.CustomerId, address.Street, address.City, address.PostalCode);
             }
         }
 
@@ -42,20 +42,37 @@ namespace EldoradoWebApi.Services
             var addressList = new List<AddressObject>();
             foreach (var address in await _context.Adresses.ToListAsync())
             {
-                addressList.Add(new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode));
+                addressList.Add(new AddressObject(address.Id, address.CustomerId, address.Street, address.City, address.PostalCode));
             }
             return addressList;
         }
 
-        public async Task<AddressObject> GetAddressById(int id)
+        public async Task<AddressObject> GetAddressById(int id, string customerId)
         {
-            var address = await _context.Adresses.FirstOrDefaultAsync(c => c.Id == id);
-            if (address == null)
+            if (customerId != null)
             {
-                return null!;
+
+
+                var address = await _context.Adresses.FirstOrDefaultAsync(c => c.CustomerId == customerId);
+                if (address == null)
+                {
+                    return null!;
+                }
+                return new AddressObject(address.Id, address.CustomerId, address.Street, address.City, address.PostalCode);
             }
 
-            return new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode);
+            else
+            {
+
+
+                var address = await _context.Adresses.FirstOrDefaultAsync(c => c.Id == id);
+                if (address == null)
+                {
+                    return null!;
+                }
+                return new AddressObject(address.CustomerId, address.Street, address.City, address.PostalCode);
+            }
+
         }
 
         public async Task<AddressObject> UpdateAddress(int id, AddressUpdate model)
@@ -64,8 +81,6 @@ namespace EldoradoWebApi.Services
 
             if (address == null)
                 return null!;
-
-
 
             else
             {

@@ -23,7 +23,7 @@ namespace EldoradoWebApi.Tests
             var sut = new AddressController(moqAddressService.Object);
 
             //Act
-            var result = await sut.GetAddress(1);
+            var result = await sut.GetAddress(1,"Oskar.josefsson12@gmail.com");
 
             //Assert
 
@@ -57,7 +57,7 @@ namespace EldoradoWebApi.Tests
             var sut = new AddressController(moqAddressService.Object);
 
             //Act
-            var result = await sut.CreateAddress(new AddressCreate("Oskar.josefsson@gmail.com", "Gata 1", "Stad 1", "123124"));
+            var result = await sut.CreateAddress(new AddressCreate("Oskar.josefsson12@gmail.com", "Gata 1", "Stad 1", "123124"));
 
             Assert.IsType<CreatedResult>(result);
         }

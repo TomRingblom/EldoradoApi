@@ -27,19 +27,20 @@ namespace EldoradoWebApi.Controllers
             return BadRequest();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAddress(int id)
+        [HttpGet("(id)(customerId)")]
+        public async Task<IActionResult> GetAddress(int id, string customer)
         {
-            return new OkObjectResult(await _service.GetAddressById(id));
+            return new OkObjectResult(await _service.GetAddressById(id, customer));
         }
 
-        [HttpGet]
+
+        [HttpGet("/api/Address")]
         public async Task<IActionResult> GetAddresses()
         {
             var addresses = await _service.GetAddresses();
             if (addresses == null)
                 return NoContent();
-            
+
             return new OkObjectResult(addresses);
         }
 
