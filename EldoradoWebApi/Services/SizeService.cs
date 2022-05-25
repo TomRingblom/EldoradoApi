@@ -1,6 +1,7 @@
 ﻿using EldoradoWebApi.Data;
 using EldoradoWebApi.Models.Entities;
 using EldoradoWebApi.Models.Sizes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace EldoradoWebApi.Services;
@@ -27,7 +28,7 @@ public class SizeService : ISizeService
 
         return new SizeObject(model.Name);
     }
-
+    
     public async Task<IEnumerable<SizeObject>> GetSizes()
     {
         var sizes = new List<SizeObject>();
@@ -37,6 +38,7 @@ public class SizeService : ISizeService
         }
         return sizes;
     }
+
 
     public async Task<SizeObject> GetSizeById(int id)
     {
