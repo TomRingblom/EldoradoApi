@@ -44,7 +44,7 @@ namespace EldoradoWebApi.Controllers
         {
             return await _service.UpdateSize(id, model) == null! ? BadRequest() : NoContent();
         }
-
+        
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSize(int id)
