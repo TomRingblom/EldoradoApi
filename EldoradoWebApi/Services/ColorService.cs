@@ -23,7 +23,7 @@ namespace EldoradoWebApi.Services
             await _context.Colors.AddAsync(new ColorEntity(model.Name));
             await _context.SaveChangesAsync();
 
-            return null!;
+            return new ColorObject(model.Name);
         }
         public async Task<IEnumerable<ColorObject>> GetColors()
         {

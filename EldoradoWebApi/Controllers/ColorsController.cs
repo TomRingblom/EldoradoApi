@@ -25,7 +25,7 @@ namespace EldoradoWebApi.Controllers
                 if (color == null!)
                     return BadRequest($"A color with the name '{model.Name}' already exists");
                 await _service.CreateColor(model);
-                return Created($"Color: '{model.Name}', created successfully.", null);
+                return Created($"Color: '{model.Name}', created successfully.", model);
             }
             return BadRequest();
         }
